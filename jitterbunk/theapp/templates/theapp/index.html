@@ -1,0 +1,23 @@
+{% load static %}
+{% if prof_img %}
+    <h1>{{username}}'s bunks</h1>
+    <img src="{% static prof_img %}" alt="profile image" width=200px> 
+{% else %}
+    <h1>Jitterbunk</h1>
+{% endif %}
+
+{% if recent_bunks %}
+    <ul>
+    {% for bunk in recent_bunks %}
+        <li>
+            <a href="{% url 'theapp:user' bunk.from_user.id %}">{{ bunk.from_user.username }}</a> bunked 
+            <a href="{% url 'theapp:user' bunk.to_user.id %}">{{ bunk.to_user.username }}</a> 
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No bunks?</p>
+{% endif %}
+<a href="{% url 'theapp:bunk'  %}">
+    <button type="button"> Bunk </button>
+</a>

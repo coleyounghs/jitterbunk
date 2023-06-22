@@ -1,0 +1,20 @@
+<form action="{% url 'theapp:submit_bunk' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Send a Bunk</h1></legend>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        <label for="from">from: </label>
+        <select name="from" id="from">
+            {% for user in users %}
+                <option value="{{user.id}}"> {{user.username}} </option>
+            {% endfor %}
+        </select>
+        <label for="to">to: </label>
+        <select name="to" id="to">
+            {% for user in users %}
+                <option value="{{user.id}}"> {{user.username}} </option>
+            {% endfor %}
+        </select>
+    </fieldset>
+    <input type="submit" value="BUNK">
+</form>
